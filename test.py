@@ -72,18 +72,18 @@ def write_log(data: dict):
 
 def grade(response, answer, random_string_to_prepend) -> float:
     if not response:
-        return 0.0
-    response = response.strip()
+        return .0
+
     if not response.startswith(random_string_to_prepend):
         return 0
+
     response = response.removeprefix(random_string_to_prepend)
     answer = answer.removeprefix(random_string_to_prepend)
     return float(SequenceMatcher(None, response, answer).ratio())
 
 
 def n_tokens(messages: list[dict]) -> int:
-    content_str = "".join([m["content"] for m in messages])
-    return len(enc.encode(content_str))
+    return sum([len(enc.encode(m["content"])) for m in messages])
 
 
 def process_single_row(index, row):
